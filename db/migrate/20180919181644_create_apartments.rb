@@ -8,7 +8,7 @@ class CreateApartments < ActiveRecord::Migration[5.2]
       t.string :state
       t.text :country
       t.string :manager_name
-      t.integer :manager_number
+      t.bigint :manager_number
       t.text :manager_time
 
       t.timestamps
