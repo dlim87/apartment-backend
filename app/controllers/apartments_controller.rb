@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-  # before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   def index
     apartments = Apartment.all
@@ -19,9 +19,8 @@ class ApartmentsController < ApplicationController
 
   def update
     apartment = Apartment.find_by(id:params[:id])
-    Apartment.update_all (apartment_params)
-    newapartment = Apartment.find_by(id:params[:id])
-    render json: newapartment
+    apartment.update(apartment_params)
+    render json: apartment
   end
 
   def destroy
