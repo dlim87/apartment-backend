@@ -1,5 +1,5 @@
 class ApartmentsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  # before_action :authenticate_user!, only: [:create, :update, :destroy]
 
   def index
     apartments = Apartment.all
@@ -7,6 +7,8 @@ class ApartmentsController < ApplicationController
   end
 
   def create
+    puts apartment_params
+    puts params
     apartment = Apartment.create(apartment_params)
     render json: apartment
   end
@@ -28,7 +30,8 @@ class ApartmentsController < ApplicationController
     apartment.destroy
   end
   def apartment_params
-    params.require(:apartment).permit(:address_1, :address_2, :city, :post_code, :state, :country, :manager_name, :manager_number, :manager_time)
+    puts params
+    params.require(:apartment).permit(:address_1, :address_2, :city, :post_code, :state, :country, :manager_name, :manager_number, :manager_time, :user_id)
   end
 
 end
